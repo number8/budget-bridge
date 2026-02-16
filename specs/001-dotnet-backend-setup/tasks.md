@@ -120,9 +120,9 @@ This is a web application with separate backend and frontend:
 - [X] T057 [US2] Create scripts/stop.sh to gracefully shut down all services based on current run mode
 - [X] T058 [US2] Update scripts/setup.sh to validate all prerequisites and provide actionable error messages
 - [X] T059 [US2] Update .vscode/tasks.json to add VS Code tasks for start.sh (all modes) and stop.sh scripts
-- [ ] T060 [US2] Update backend/README.md with instructions for each run mode and when to use them
-- [ ] T061 [US2] Test that scripts/start.sh local starts both services and CORS allows frontend-to-backend communication
-- [ ] T062 [US2] Test that Ctrl+C or scripts/stop.sh gracefully stops all services without orphaned processes
+- [X] T060 [US2] Update README.md with instructions for each run mode and when to use them
+- [X] T061 [US2] Test that scripts/start.sh local starts both services and CORS allows frontend-to-backend communication
+- [X] T062 [US2] Test that Ctrl+C or scripts/stop.sh gracefully stops all services without orphaned processes 
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work - single command starts full development environment
 
@@ -136,17 +136,17 @@ This is a web application with separate backend and frontend:
 
 ### Implementation for User Story 3
 
-- [ ] T063 [P] [US3] Create CONTRIBUTING.md at repository root with branch naming conventions (feature/*, bugfix/*, docs/*)
-- [ ] T064 [P] [US3] Add commit message format guidelines to CONTRIBUTING.md (conventional commits: feat:, fix:, docs:, etc.)
-- [ ] T065 [P] [US3] Add pull request process to CONTRIBUTING.md including required reviewers and merge criteria
-- [ ] T066 [P] [US3] Create .github/PULL_REQUEST_TEMPLATE.md with sections for description, testing, checklist
-- [ ] T067 [P] [US3] Create .github/ISSUE_TEMPLATE/bug_report.md with environment, reproduction steps, expected/actual behavior
-- [ ] T068 [P] [US3] Create .github/ISSUE_TEMPLATE/feature_request.md with problem statement, proposed solution, alternatives
-- [ ] T069 [P] [US3] Create .github/workflows/backend-ci.yml to build, lint, and test backend on pull requests
-- [ ] T070 [P] [US3] Configure backend-ci.yml to run dotnet format --verify-no-changes for code style enforcement
-- [ ] T071 [P] [US3] Configure backend-ci.yml to build Docker image and push to ghcr.io/mmorales/budget-bridge/backend
-- [ ] T072 [P] [US3] Update frontend CI workflow at .github/workflows/frontend-ci.yml to push to ghcr.io/mmorales/budget-bridge/frontend
-- [ ] T073 [US3] Add code style and linting checks section to CONTRIBUTING.md with dotnet format usage
+- [X] T063 [P] [US3] Create CONTRIBUTING.md at repository root with branch naming conventions (feature/*, bugfix/*, docs/*)
+- [X] T064 [P] [US3] Add commit message format guidelines to CONTRIBUTING.md (conventional commits: feat:, fix:, docs:, etc.)
+- [X] T065 [P] [US3] Add pull request process to CONTRIBUTING.md including required reviewers and merge criteria
+- [X] T066 [P] [US3] Create .github/PULL_REQUEST_TEMPLATE.md with sections for description, testing, checklist
+- [X] T067 [P] [US3] Create .github/ISSUE_TEMPLATE/bug_report.md with environment, reproduction steps, expected/actual behavior
+- [X] T068 [P] [US3] Create .github/ISSUE_TEMPLATE/feature_request.md with problem statement, proposed solution, alternatives
+- [X] T069 [P] [US3] Create .github/workflows/backend-ci.yml to build, lint, and test backend on pull requests
+- [X] T070 [P] [US3] Configure backend-ci.yml to run dotnet format --verify-no-changes for code style enforcement
+- [X] T071 [P] [US3] Configure backend-ci.yml to build Docker image and push to ghcr.io/mmorales/budget-bridge/backend
+- [X] T072 [P] [US3] Update frontend CI workflow at .github/workflows/frontend-ci.yml to push to ghcr.io/mmorales/budget-bridge/frontend
+- [X] T073 [US3] Add code style and linting checks section to CONTRIBUTING.md with dotnet format usage
 - [ ] T074 [US3] Test that pull request triggers CI workflow and provides feedback on build, format, and test results
 
 **Checkpoint**: All user stories should now be independently functional - full development workflow with contribution guidelines

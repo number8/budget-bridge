@@ -6,6 +6,126 @@ BudgetBridge is a Web application that simplifies personal finance management by
 
 BudgetBridge streamlines the process of importing financial data into your budgeting app. Upload statements in various formats (CSV, QIF, PDF), let the system parse and normalize the data, apply AI-powered categorization, and export clean CSV files ready for import.
 
+## Getting Started
+
+### Prerequisites
+
+- [.NET SDK 9.0+](https://dotnet.microsoft.com/download)
+- [Docker](https://www.docker.com/get-started)
+- [pnpm](https://pnpm.io/installation) (or npm/yarn)
+- [PostgreSQL 16+](https://www.postgresql.org/) (or use Docker container)
+
+### Quick Start
+
+```bash
+# Initial setup (run once)
+./scripts/setup.sh
+
+# Start development environment
+./scripts/start.sh --mode=local
+
+# Access the application
+# Backend: http://localhost:8080/health
+# Frontend: http://localhost:5173
+
+# Stop all services
+./scripts/stop.sh
+```
+
+### Run Modes
+
+BudgetBridge supports four run modes optimized for different development scenarios:
+
+#### Mode 1: **Local Development** (Default)
+**When to use**: Active development with hot reload  
+**What runs**: Backend via `dotnet watch`, Frontend via `pnpm dev`, PostgreSQL in Docker  
+**Pros**: Fastest feedback loop, full debugging support  
+**Cons**: Requires .NET SDK and pnpm installed
+
+```bash
+./scripts/start.sh --mode=local
+# or
+./scripts/start.sh  # local is default
+```
+
+- Backend: http://localhost:8080 (hot reload enabled)
+- Frontend: http://localhost:5173 (hot reload enabled)
+- PostgreSQL: localhost:5432
+
+#### Mode 2: **Backend-Only** (Containerized)
+**When to use**: Frontend-only development, testing backend in production-like environment  
+**What runs**: Backend + PostgreSQL in Docker  
+**Pros**: Matches production environment, isolated from system  
+**Cons**: No hot reload, slower build cycles
+
+```bash
+./scripts/start.sh --mode=backend
+```
+
+- Backend: http://localhost:8080 (containerized)
+- PostgreSQL: Internal Docker network
+- Frontend: Start separately with `cd frontend && pnpm dev`
+
+#### Mode 3: **Full Stack** (Containerized)
+**When to use**: Integration testing, deployment verification, contributors without local tooling  
+**What runs**: Backend + PostgreSQL + Frontend, all in Docker  
+**Pros**: Complete environment, no local dependencies beyond Docker  
+**Cons**: Slowest feedback loop, harder to debug
+
+```bash
+./scripts/start.sh --mode=full
+```
+
+- Backend: http://localhost:8080 (containerized)
+- Frontend: http://localhost:5173 (containerized)
+- PostgreSQL: Internal Docker network
+
+#### Mode 4: **Frontend-Only**
+**When to use**: Frontend development against deployed backend  
+**What runs**: Frontend dev server only  
+**Pros**: Minimal resource usage, frontend hot reload  
+**Cons**: Requires backend running elsewhere
+
+```bash
+./scripts/start.sh --mode=frontend
+```
+
+- Frontend: http://localhost:5173 (hot reload enabled)
+- Backend: Must be running at configured URL
+
+### VS Code Integration
+
+Run modes are also available as VS Code tasks (Command Palette → "Tasks: Run Task"):
+
+- **Setup: Initialize BudgetBridge** - One-time setup
+- **Database: Initialize (Local)** - Apply migrations
+- **Start: Local Development** - Mode 1 (local)
+- **Start: Backend Only (Docker)** - Mode 2 (backend)
+- **Start: Full (Docker)** - Mode 3 (full)
+- **Start: Frontend Only** - Mode 4 (frontend)
+- **Stop: All Services** - Graceful shutdown
+
+### Project Structure
+
+```
+budget-bridge/
+├── backend/              # .NET 9 Web API (Clean Architecture)
+├── frontend/             # React + TypeScript + Vite
+├── scripts/              # Unified startup and setup scripts
+│   ├── setup.sh         # Initial environment setup
+│   ├── start.sh         # Multi-mode startup
+│   ├── stop.sh          # Graceful shutdown
+│   └── db-init.sh       # Database initialization
+├── docker-compose.yml    # Production orchestration
+├── docker-compose.dev.yml # Development overrides
+└── .vscode/tasks.json   # VS Code task definitions
+```
+
+### Development Documentation
+
+- **Backend**: See [backend/README.md](backend/README.md) for .NET development details
+- **Frontend**: See [frontend/README.md](frontend/README.md) for React development details
+
 ## Contributing
 
 We welcome contributions! To ensure smooth collaboration:

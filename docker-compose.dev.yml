@@ -1,0 +1,47 @@
+version: '3.8'
+
+# Development overrides for hot reload and debugging
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: build  # Stay in build stage for development
+    volumes:
+      - ./backend/src:/src/src:ro
+      - ./backend/tests:/src/tests:ro
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Logging__LogLevel__Default: Debug
+      Logging__LogLevel__Microsoft.EntityFrameworkCore: Information
+    command: dotnet watch run --project /src/src/BudgetBridge.Api/BudgetBridge.Api.csproj --no-restore
+    ports:
+      - "8080:8080"
+      - "5001:5001"  # HTTPS (if needed)
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: development  # If multi-stage Dockerfile exists
+    volumes:
+      - ./frontend/src:/app/src:ro
+      - ./frontend/public:/app/public:ro
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8080
+    command: pnpm dev --host
+    ports:
+      - "5173:5173"
+
+  postgres:
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: dev_password
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_dev_data:
+    driver: local

@@ -26,21 +26,21 @@ This is a web application with separate backend and frontend:
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create backend directory structure per plan.md (Domain, Application, Infrastructure, Api layers)
-- [ ] T002 Create backend/BudgetBridge.sln solution file
-- [ ] T003 Create backend/src/BudgetBridge.Domain/BudgetBridge.Domain.csproj project with no external dependencies
-- [ ] T004 Create backend/src/BudgetBridge.Application/BudgetBridge.Application.csproj project with reference to Domain
-- [ ] T005 Create backend/src/BudgetBridge.Infrastructure/BudgetBridge.Infrastructure.csproj project with EF Core 9.0+ and references to Domain and Application
-- [ ] T006 Create backend/src/BudgetBridge.Api/BudgetBridge.Api.csproj project with ASP.NET Core 9.0, FluentValidation, and references to Application and Infrastructure
-- [ ] T007 [P] Create backend/tests/BudgetBridge.Domain.Tests/BudgetBridge.Domain.Tests.csproj with xUnit and Moq
-- [ ] T008 [P] Create backend/tests/BudgetBridge.Application.Tests/BudgetBridge.Application.Tests.csproj with xUnit and Moq
-- [ ] T009 [P] Create backend/tests/BudgetBridge.Infrastructure.Tests/BudgetBridge.Infrastructure.Tests.csproj with xUnit, Moq, and Testcontainers
-- [ ] T010 [P] Create backend/tests/BudgetBridge.Api.Tests/BudgetBridge.Api.Tests.csproj with xUnit and Microsoft.AspNetCore.Mvc.Testing
-- [ ] T011 [P] Create backend/.editorconfig with C# formatting rules and nullable reference types enabled
-- [ ] T012 [P] Create backend/Directory.Build.props with TreatWarningsAsErrors=true and common MSBuild properties
-- [ ] T013 [P] Create backend/Directory.Packages.props for central package management
-- [ ] T014 [P] Create backend/.env.example template file with DB_PASSWORD and ASPNETCORE_ENVIRONMENT variables
-- [ ] T015 [P] Create backend/README.md explaining Clean Architecture layers and navigation guide
+- [X] T001 Create backend directory structure per plan.md (Domain, Application, Infrastructure, Api layers)
+- [X] T002 Create backend/BudgetBridge.sln solution file
+- [X] T003 Create backend/src/BudgetBridge.Domain/BudgetBridge.Domain.csproj project with no external dependencies
+- [X] T004 Create backend/src/BudgetBridge.Application/BudgetBridge.Application.csproj project with reference to Domain
+- [X] T005 Create backend/src/BudgetBridge.Infrastructure/BudgetBridge.Infrastructure.csproj project with EF Core 9.0+ and references to Domain and Application
+- [X] T006 Create backend/src/BudgetBridge.Api/BudgetBridge.Api.csproj project with ASP.NET Core 9.0, FluentValidation, and references to Application and Infrastructure
+- [X] T007 [P] Create backend/tests/BudgetBridge.Domain.Tests/BudgetBridge.Domain.Tests.csproj with xUnit and Moq
+- [X] T008 [P] Create backend/tests/BudgetBridge.Application.Tests/BudgetBridge.Application.Tests.csproj with xUnit and Moq
+- [X] T009 [P] Create backend/tests/BudgetBridge.Infrastructure.Tests/BudgetBridge.Infrastructure.Tests.csproj with xUnit, Moq, and Testcontainers
+- [X] T010 [P] Create backend/tests/BudgetBridge.Api.Tests/BudgetBridge.Api.Tests.csproj with xUnit and Microsoft.AspNetCore.Mvc.Testing
+- [X] T011 [P] Create backend/.editorconfig with C# formatting rules and nullable reference types enabled
+- [X] T012 [P] Create backend/Directory.Build.props with TreatWarningsAsErrors=true and common MSBuild properties
+- [X] T013 [P] Create backend/Directory.Packages.props for central package management
+- [X] T014 [P] Create backend/.env.example template file with DB_PASSWORD and ASPNETCORE_ENVIRONMENT variables
+- [X] T015 [P] Create backend/README.md explaining Clean Architecture layers and navigation guide
 
 ---
 
@@ -50,27 +50,27 @@ This is a web application with separate backend and frontend:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T016 Create backend/src/BudgetBridge.Domain/Entities/.gitkeep placeholder
-- [ ] T017 Create backend/src/BudgetBridge.Domain/Interfaces/IRepository.cs generic repository interface
-- [ ] T018 Create backend/src/BudgetBridge.Application/Common/.gitkeep placeholder
-- [ ] T019 Create backend/src/BudgetBridge.Application/DTOs/.gitkeep placeholder
-- [ ] T020 Create backend/src/BudgetBridge.Application/Services/.gitkeep placeholder
-- [ ] T021 Create backend/src/BudgetBridge.Infrastructure/Persistence/ApplicationDbContext.cs with DbContext base setup
-- [ ] T022 Create backend/src/BudgetBridge.Infrastructure/Persistence/Migrations/.gitkeep placeholder
-- [ ] T023 Create backend/src/BudgetBridge.Infrastructure/Persistence/Configurations/.gitkeep placeholder
-- [ ] T024 Create backend/src/BudgetBridge.Infrastructure/Configuration/DependencyInjection.cs for service registration
-- [ ] T025 Create backend/src/BudgetBridge.Api/Program.cs with minimal ASP.NET Core setup and DI registration
-- [ ] T026 Create backend/src/BudgetBridge.Api/appsettings.json with logging and Kestrel configuration
-- [ ] T027 Create backend/src/BudgetBridge.Api/appsettings.Development.json with development-specific settings
-- [ ] T028 Create backend/src/BudgetBridge.Api/Middleware/.gitkeep placeholder for future error handling middleware
-- [ ] T029 Create backend/Dockerfile with multi-stage build (SDK 9.0 for build, aspnet 9.0 for runtime)
-- [ ] T030 Create docker-compose.yml at repository root with PostgreSQL 16 service and backend service using profiles
-- [ ] T031 Create docker-compose.dev.yml at repository root with development overrides for hot reload
-- [ ] T032 Add frontend service to docker-compose.yml with profile configuration and backend dependency
-- [ ] T033 Create .env.example at repository root with DB_PASSWORD, POSTGRES_USER, POSTGRES_DB variables
-- [ ] T034 Create scripts/setup.sh for initializing .NET user secrets, .env file, and running pnpm install
-- [ ] T035 Create scripts/db-init.sh for database initialization with secrets management
-- [ ] T036 [P] Create .vscode/tasks.json with VS Code tasks for setup.sh and db-init.sh scripts
+- [X] T016 Create backend/src/BudgetBridge.Domain/Entities/.gitkeep placeholder
+- [X] T017 Create backend/src/BudgetBridge.Domain/Interfaces/IRepository.cs generic repository interface
+- [X] T018 Create backend/src/BudgetBridge.Application/Common/.gitkeep placeholder
+- [X] T019 Create backend/src/BudgetBridge.Application/DTOs/.gitkeep placeholder
+- [X] T020 Create backend/src/BudgetBridge.Application/Services/.gitkeep placeholder
+- [X] T021 Create backend/src/BudgetBridge.Infrastructure/Persistence/ApplicationDbContext.cs with DbContext base setup
+- [X] T022 Create backend/src/BudgetBridge.Infrastructure/Persistence/Migrations/.gitkeep placeholder
+- [X] T023 Create backend/src/BudgetBridge.Infrastructure/Persistence/Configurations/.gitkeep placeholder
+- [X] T024 Create backend/src/BudgetBridge.Infrastructure/Configuration/DependencyInjection.cs for service registration
+- [X] T025 Create backend/src/BudgetBridge.Api/Program.cs with minimal ASP.NET Core setup and DI registration
+- [X] T026 Create backend/src/BudgetBridge.Api/appsettings.json with logging and Kestrel configuration
+- [X] T027 Create backend/src/BudgetBridge.Api/appsettings.Development.json with development-specific settings
+- [X] T028 Create backend/src/BudgetBridge.Api/Middleware/.gitkeep placeholder for future error handling middleware
+- [X] T029 Create backend/Dockerfile with multi-stage build (SDK 9.0 for build, aspnet 9.0 for runtime)
+- [X] T030 Create docker-compose.yml at repository root with PostgreSQL 16 service and backend service using profiles
+- [X] T031 Create docker-compose.dev.yml at repository root with development overrides for hot reload
+- [X] T032 Add frontend service to docker-compose.yml with profile configuration and backend dependency
+- [X] T033 Create .env.example at repository root with DB_PASSWORD, POSTGRES_USER, POSTGRES_DB variables
+- [X] T034 Create scripts/setup.sh for initializing .NET user secrets, .env file, and running pnpm install
+- [X] T035 Create scripts/db-init.sh for database initialization with secrets management
+- [X] T036 [P] Create .vscode/tasks.json with VS Code tasks for setup.sh and db-init.sh scripts
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -84,18 +84,18 @@ This is a web application with separate backend and frontend:
 
 ### Implementation for User Story 1
 
-- [ ] T037 [P] [US1] Create backend/src/BudgetBridge.Domain/Entities/Budget.cs placeholder entity with factory method pattern per data-model.md
-- [ ] T038 [P] [US1] Create backend/src/BudgetBridge.Domain/Interfaces/IBudgetRepository.cs with CRUD method signatures
-- [ ] T039 [US1] Create backend/src/BudgetBridge.Infrastructure/Persistence/Configurations/BudgetConfiguration.cs with EF Core entity configuration
-- [ ] T040 [US1] Update backend/src/BudgetBridge.Infrastructure/Persistence/ApplicationDbContext.cs to include Budget DbSet
-- [ ] T041 [US1] Create backend/src/BudgetBridge.Infrastructure/Persistence/Repositories/BudgetRepository.cs implementing IBudgetRepository
-- [ ] T042 [US1] Update backend/src/BudgetBridge.Infrastructure/Configuration/DependencyInjection.cs to register BudgetRepository
-- [ ] T043 [US1] Create backend/src/BudgetBridge.Api/Controllers/HealthController.cs with GET /health endpoint per contracts/health-api.yaml
-- [ ] T044 [US1] Create backend/src/BudgetBridge.Api/Controllers/HealthController.cs with GET /health/ready endpoint checking database connectivity
-- [ ] T045 [US1] Add HealthResponse and ReadinessResponse models in backend/src/BudgetBridge.Api/Models/HealthResponse.cs
-- [ ] T046 [US1] Update backend/src/BudgetBridge.Api/Program.cs to configure CORS for frontend origin (http://localhost:3000)
-- [ ] T047 [US1] Update backend/src/BudgetBridge.Api/Program.cs to enable hot reload with dotnet watch configuration
-- [ ] T048 [US1] Create initial EF Core migration in backend/src/BudgetBridge.Infrastructure/Persistence/Migrations/ for Budget entity
+- [X] T037 [P] [US1] Create backend/src/BudgetBridge.Domain/Entities/Budget.cs placeholder entity with factory method pattern per data-model.md
+- [X] T038 [P] [US1] Create backend/src/BudgetBridge.Domain/Interfaces/IBudgetRepository.cs with CRUD method signatures
+- [X] T039 [US1] Create backend/src/BudgetBridge.Infrastructure/Persistence/Configurations/BudgetConfiguration.cs with EF Core entity configuration
+- [X] T040 [US1] Update backend/src/BudgetBridge.Infrastructure/Persistence/ApplicationDbContext.cs to include Budget DbSet
+- [X] T041 [US1] Create backend/src/BudgetBridge.Infrastructure/Persistence/Repositories/BudgetRepository.cs implementing IBudgetRepository
+- [X] T042 [US1] Update backend/src/BudgetBridge.Infrastructure/Configuration/DependencyInjection.cs to register BudgetRepository
+- [X] T043 [US1] Create backend/src/BudgetBridge.Api/Controllers/HealthController.cs with GET /health endpoint per contracts/health-api.yaml
+- [X] T044 [US1] Create backend/src/BudgetBridge.Api/Controllers/HealthController.cs with GET /health/ready endpoint checking database connectivity
+- [X] T045 [US1] Add HealthResponse and ReadinessResponse models in backend/src/BudgetBridge.Api/Models/HealthResponse.cs
+- [X] T046 [US1] Update backend/src/BudgetBridge.Api/Program.cs to configure CORS for frontend origin (http://localhost:3000)
+- [X] T047 [US1] Update backend/src/BudgetBridge.Api/Program.cs to enable hot reload with dotnet watch configuration
+- [X] T048 [US1] Create initial EF Core migration in backend/src/BudgetBridge.Infrastructure/Persistence/Migrations/ for Budget entity
 - [ ] T049 [US1] Test health endpoints return correct responses and status codes per contracts/health-api.yaml specification
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - backend starts and health endpoints respond correctly
@@ -110,16 +110,16 @@ This is a web application with separate backend and frontend:
 
 ### Implementation for User Story 2
 
-- [ ] T050 [US2] Create scripts/start.sh with mode argument parsing (--mode=full|backend|frontend|local with default=local)
-- [ ] T051 [US2] Implement scripts/start.sh local mode to start PostgreSQL container, run backend via dotnet watch, run frontend via pnpm dev
-- [ ] T052 [US2] Implement scripts/start.sh full mode to run docker compose --profile full up
-- [ ] T053 [US2] Implement scripts/start.sh backend mode to run docker compose --profile backend-only up
-- [ ] T054 [US2] Implement scripts/start.sh frontend mode to start PostgreSQL and backend containers, with instructions to manually start frontend
-- [ ] T055 [US2] Add prerequisite checks to scripts/start.sh for .NET SDK, Docker, Docker Compose, and pnpm with version validation
-- [ ] T056 [US2] Add port conflict detection to scripts/start.sh for ports 3000, 5000, 5432 with clear error messages
-- [ ] T057 [US2] Create scripts/stop.sh to gracefully shut down all services based on current run mode
-- [ ] T058 [US2] Update scripts/setup.sh to validate all prerequisites and provide actionable error messages
-- [ ] T059 [US2] Update .vscode/tasks.json to add VS Code tasks for start.sh (all modes) and stop.sh scripts
+- [X] T050 [US2] Create scripts/start.sh with mode argument parsing (--mode=full|backend|frontend|local with default=local)
+- [X] T051 [US2] Implement scripts/start.sh local mode to start PostgreSQL container, run backend via dotnet watch, run frontend via pnpm dev
+- [X] T052 [US2] Implement scripts/start.sh full mode to run docker compose --profile full up
+- [X] T053 [US2] Implement scripts/start.sh backend mode to run docker compose --profile backend-only up
+- [X] T054 [US2] Implement scripts/start.sh frontend mode to start PostgreSQL and backend containers, with instructions to manually start frontend
+- [X] T055 [US2] Add prerequisite checks to scripts/start.sh for .NET SDK, Docker, Docker Compose, and pnpm with version validation
+- [X] T056 [US2] Add port conflict detection to scripts/start.sh for ports 3000, 5000, 5432 with clear error messages
+- [X] T057 [US2] Create scripts/stop.sh to gracefully shut down all services based on current run mode
+- [X] T058 [US2] Update scripts/setup.sh to validate all prerequisites and provide actionable error messages
+- [X] T059 [US2] Update .vscode/tasks.json to add VS Code tasks for start.sh (all modes) and stop.sh scripts
 - [ ] T060 [US2] Update backend/README.md with instructions for each run mode and when to use them
 - [ ] T061 [US2] Test that scripts/start.sh local starts both services and CORS allows frontend-to-backend communication
 - [ ] T062 [US2] Test that Ctrl+C or scripts/stop.sh gracefully stops all services without orphaned processes

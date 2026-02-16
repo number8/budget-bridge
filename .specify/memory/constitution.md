@@ -63,8 +63,9 @@ Rationale: MINOR version bump (1.0.0) - initial constitution establishment for n
 - **Type-safe routing**: TanStack Router provides compile-time route safety
 - **Schema validation**: Runtime validation for API boundaries (e.g., FluentValidation in .NET, Zod in TypeScript)
 - **Code quality tools**: Biome (frontend), built-in analyzers (backend) enforced in CI
+- **One public class per file**: Each file MUST contain exactly one public class/interface/type (exceptions: nested types, private classes)
 
-**Rationale**: Financial calculations and data transformations require correctness. Type systems catch entire classes of bugs at compile time.
+**Rationale**: Financial calculations and data transformations require correctness. Type systems catch entire classes of bugs at compile time. Single class per file improves code organization, discoverability, and maintainability.
 
 ### V. Incremental Learning & AI Assistance
 **System MUST learn from user corrections without compromising privacy.**

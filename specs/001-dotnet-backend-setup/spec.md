@@ -57,11 +57,11 @@ As an open-source contributor, I need clear documentation about how to submit ch
 
 ### Edge Cases
 
-- What happens when a developer has an incompatible version of the backend runtime installed?
-- How does the system handle port conflicts when default ports are already in use on the developer's machine?
-- What happens if database connection strings or configuration files are missing from the local environment?
-- How are secrets and sensitive configuration values handled in local development without committing them to the repository?
-- What happens when a developer switches branches and the database schema has changed between branches?
+- What happens when a developer has an incompatible version of the backend runtime installed? Developer should be knowledgeable enough to recognize and fix this. It is not this project's goal to support this autoamtically. 
+- How does the system handle port conflicts when default ports are already in use on the developer's machine? On docker container runtime, all communication should be interal to the docker environment. If there are port conflicts, the developer should be able to recognize and fix them. No automatic response is expected. However, the initial ports to be used should be random picked at creation and then fixed for everyone to use. 
+- What happens if database connection strings or configuration files are missing from the local environment? Dev should know how to fix it, but when running the docker-compose (or equivalent modern stack) stack it should not matter, and that should be the default behavior. 
+- How are secrets and sensitive configuration values handled in local development without committing them to the repository? Secrets should only exist on the backend, and it should use dotnet-secrets. The README.md should have initial configuration instructions instructing to setup the secrets. If possible, we can have a script that automates the creation of secrets and similar other settings with basic simple prompts (e.g. gen random password and init the db container with that password and store the dotnet-secret)
+- What happens when a developer switches branches and the database schema has changed between branches? Use an ORM to manage DB schema versions and migrations. Switching branches will be a challenge, but we don't have to worry too much about this problem as long as we have migrations we can accept the risk of concurrent changes creating conflicting schema changes (this is unlikely). 
 
 ## Requirements *(mandatory)*
 
@@ -81,7 +81,7 @@ As an open-source contributor, I need clear documentation about how to submit ch
 - **FR-012**: System MUST provide default port configurations that can be overridden through environment variables
 - **FR-013**: System MUST include a README at the backend project root explaining the architecture layers and how to navigate the codebase
 - **FR-014**: System MUST support graceful shutdown when the developer stops the service
-- **FR-015**: System MUST detect port conflicts and either use alternative ports or provide clear error messages indicating the conflict
+- **FR-015**: System MUST detect port conflicts and provide clear error messages indicating the conflict
 
 ### Key Entities
 

@@ -1,0 +1,284 @@
+openapi: 3.0.3
+info:
+  title: BudgetBridge API
+  description: |
+    RESTful API for BudgetBridge self-hosted budgeting application.
+    
+    This initial specification covers health/diagnostic endpoints for the backend setup feature.
+    Future versions will include budget management, transaction parsing, and AI categorization endpoints.
+  version: 1.0.0
+  contact:
+    name: BudgetBridge Project
+    url: https://github.com/mmorales/budget-bridge
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+  - url: http://localhost:8080
+    description: Docker container (internal port)
+
+tags:
+  - name: Health
+    description: Health check and diagnostic endpoints
+
+paths:
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Basic health check
+      description: Returns service health status without checking dependencies
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              examples:
+                healthy:
+                  value:
+                    status: "Healthy"
+                    version: "1.0.0"
+                    timestamp: "2026-02-16T12:00:00Z"
+        '503':
+          description: Service is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              examples:
+                unhealthy:
+                  value:
+                    status: "Unhealthy"
+                    version: "1.0.0"
+                    timestamp: "2026-02-16T12:00:00Z"
+                    error: "Service initialization failed"
+
+  /health/ready:
+    get:
+      tags:
+        - Health
+      summary: Readiness probe
+      description: |
+        Returns service readiness status including all dependencies.
+        Suitable for Kubernetes readiness probes and load balancer health checks.
+      operationId: getReadiness
+      responses:
+        '200':
+          description: Service is ready to accept traffic
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessResponse'
+              examples:
+                ready:
+                  value:
+                    status: "Ready"
+                    version: "1.0.0"
+                    timestamp: "2026-02-16T12:00:00Z"
+                    dependencies:
+                      database: "Healthy"
+                      migration_status: "Up-to-date"
+        '503':
+          description: Service is not ready (dependencies unavailable)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessResponse'
+              examples:
+                not_ready:
+                  value:
+                    status: "NotReady"
+                    version: "1.0.0"
+                    timestamp: "2026-02-16T12:00:00Z"
+                    dependencies:
+                      database: "Unhealthy"
+                      migration_status: "Pending"
+                    error: "Database connection failed"
+
+  /health/live:
+    get:
+      tags:
+        - Health
+      summary: Liveness probe
+      description: |
+        Returns minimal liveness status (service process is running).
+        Suitable for Kubernetes liveness probes—restarts container if failing.
+      operationId: getLiveness
+      responses:
+        '200':
+          description: Service process is alive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivenessResponse'
+              examples:
+                alive:
+                  value:
+                    status: "Alive"
+                    timestamp: "2026-02-16T12:00:00Z"
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - version
+        - timestamp
+      properties:
+        status:
+          type: string
+          enum: [Healthy, Unhealthy]
+          description: Overall service health status
+        version:
+          type: string
+          description: Semantic version of the API (e.g., "1.0.0")
+          example: "1.0.0"
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the health check
+        error:
+          type: string
+          description: Error message if unhealthy (omitted if healthy)
+          example: "Service initialization failed"
+
+    ReadinessResponse:
+      type: object
+      required:
+        - status
+        - version
+        - timestamp
+        - dependencies
+      properties:
+        status:
+          type: string
+          enum: [Ready, NotReady]
+          description: Service readiness status
+        version:
+          type: string
+          description: Semantic version of the API
+          example: "1.0.0"
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the readiness check
+        dependencies:
+          type: object
+          description: Health status of each dependency
+          additionalProperties:
+            type: string
+          example:
+            database: "Healthy"
+            migration_status: "Up-to-date"
+        error:
+          type: string
+          description: Error message if not ready (omitted if ready)
+
+    LivenessResponse:
+      type: object
+      required:
+        - status
+        - timestamp
+      properties:
+        status:
+          type: string
+          enum: [Alive]
+          description: Service liveness status (always "Alive" if responding)
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the liveness check
+
+    # Placeholder schemas for future features
+    Budget:
+      type: object
+      description: "[FUTURE] Budget entity for tracking spending limits"
+      required:
+        - id
+        - name
+        - amount
+        - startDate
+        - endDate
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique budget identifier
+        name:
+          type: string
+          maxLength: 200
+          description: Budget name
+          example: "Monthly Groceries"
+        amount:
+          type: number
+          format: decimal
+          minimum: 0.01
+          description: Budget amount in base currency units
+          example: 500.00
+        startDate:
+          type: string
+          format: date
+          description: Budget period start date
+        endDate:
+          type: string
+          format: date
+          description: Budget period end date
+        createdAt:
+          type: string
+          format: date-time
+          description: Budget creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Last update timestamp
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - timestamp
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          description: Additional error details (e.g., validation failures)
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field name causing the error
+              message:
+                type: string
+                description: Field-specific error message
+        timestamp:
+          type: string
+          format: date-time
+          description: Error occurrence timestamp
+        traceId:
+          type: string
+          description: Correlation ID for log tracing
+          example: "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        [FUTURE] JWT authentication for protected endpoints.
+        Not implemented in initial backend setup.
+
+# Future security requirements (not in initial scope)
+# security:
+#   - BearerAuth: []

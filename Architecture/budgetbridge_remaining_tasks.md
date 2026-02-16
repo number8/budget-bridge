@@ -173,15 +173,39 @@ General UI conventions (unless stated otherwise):
 
 # Frontend (React) Tasks – Expanded
 
-## [FE] Frontend Project Scaffold
+## [FE] ✅ Frontend Project Scaffold (COMPLETED)
 
-### Functional Requirements
-- Base React + TypeScript app.
-- Shared layout and theming.
+### Implementation Details
+The frontend scaffold has been successfully implemented with:
 
-### Technical Requirements
-- Vite.
-- Tailwind + shadcn/ui.
+**Technology Stack:**
+- React 19.2.0 + TypeScript 5.9.3
+- Vite 7.3.1 (build tool)
+- TanStack Router 1.120.2 (file-based routing)
+- TanStack Query 5.75.5 (server state management)
+- Tailwind CSS 4.1.7 (styling)
+- shadcn/ui components (ready for installation)
+- Lucide React (icons)
+- Biome 1.9.4 (formatting/linting)
+- Vitest + React Testing Library (testing)
+
+**Project Structure:**
+- `/src/routes/` - File-based routing with TanStack Router
+- `/src/lib/` - Utility functions
+- `/src/styles/` - Global styles with Tailwind
+- `/src/__tests__/` - Component tests
+- Complete TypeScript configuration with path aliases (`@/*`)
+- Docker multi-stage build with Nginx
+- Development scripts: dev, build, preview, lint, format, test
+
+**Current Pages:**
+- Landing page at `/` with BudgetBridge branding
+- Root layout with React Query provider configured
+
+**Next Steps:**
+- Install shadcn/ui components as needed
+- Implement authentication UI
+- Build app shell with navigation
 
 ---
 

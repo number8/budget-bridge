@@ -327,22 +327,77 @@ When users correct categories in the UI:
 
 ## 5. Frontend Architecture (React + shadcn/ui)
 
-### 5.1 Technology Stack
+### 5.1 Technology Stack (Implemented)
 
-- **React 18 + TypeScript**
-- **Build tool:** Vite
-- **Routing:** React Router
-- **Server state:** TanStack Query
-- **Design system:** shadcn/ui (Radix UI primitives + Tailwind)
-- **Styling:** Tailwind CSS
+- **React 19.2.0 + TypeScript 5.9.3**
+- **Build tool:** Vite 7.3.1
+- **Routing:** TanStack Router 1.120.2 (with file-based routing and auto code-splitting)
+- **Server state:** TanStack Query 5.75.5
+- **Design system:** shadcn/ui with Radix UI primitives
+- **Styling:** Tailwind CSS 4.1.7 (via @tailwindcss/vite)
+- **Icons:** Lucide React 0.564.0
+- **Code quality:** Biome 1.9.4 (formatting, linting, import organization)
+- **Testing:** Vitest 3.2.1 + React Testing Library 16.3.0 + jsdom 26.1.0
+- **Package manager:** pnpm (with lock file)
 
-### 5.2 Key UI Modules
+### 5.2 Project Structure
 
-1. **Authentication**
+```
+frontend/
+├── public/                  # Static assets
+├── src/
+│   ├── __tests__/          # Component tests
+│   ├── lib/                # Utility functions (e.g., utils.ts with cn helper)
+│   ├── routes/             # File-based routes (TanStack Router)
+│   │   ├── __root.tsx      # Root layout with QueryClientProvider
+│   │   └── index.tsx       # Home page route
+│   ├── styles/             # Global styles
+│   │   └── globals.css     # Tailwind directives and custom styles
+│   ├── main.tsx            # Application entry point
+│   └── routeTree.gen.ts    # Auto-generated route tree
+├── biome.json              # Biome configuration (formatting/linting)
+├── components.json         # shadcn/ui configuration
+├── Dockerfile              # Production container build
+├── nginx.conf              # Nginx server configuration for SPA
+├── package.json            # Dependencies and scripts
+├── tsconfig.json           # TypeScript base configuration
+├── tsconfig.app.json       # TypeScript app-specific config
+├── tsconfig.node.json      # TypeScript Node/build config
+├── vite.config.ts          # Vite bundler configuration
+└── vitest.config.ts        # Vitest test runner configuration
+```
+
+**Key Configuration Details:**
+
+- **TypeScript:** Path aliases configured (`@/*` → `./src/*`) for clean imports
+- **TanStack Router:** File-based routing with automatic route tree generation and code splitting
+- **React Query:** Configured with 5-minute stale time and single retry by default
+- **Biome:** Tab indentation (width 2), 100-char line width, double quotes, semicolons required
+- **Vite Plugins:**
+  - `@tanstack/router-plugin` for route generation
+  - `@vitejs/plugin-react` for React support
+  - `@tailwindcss/vite` for Tailwind CSS v4
+- **Testing:** jsdom environment with React Testing Library and jest-dom matchers
+- **Docker:** Multi-stage build producing optimized production bundle served via Nginx
+
+### 5.3 Key UI Modules
+
+**Current Implementation Status:**
+
+The frontend scaffold includes:
+- Basic routing structure with TanStack Router
+- Root layout with React Query setup
+- Landing page with BudgetBridge branding
+- Complete development toolchain (build, test, lint, format)
+- Production-ready Docker configuration with Nginx
+
+**Planned UI Modules:**
+
+1. **Authentication** (Not yet implemented)
    - Login / registration pages (JWT issued by backend).
    - Persist JWT in memory + secure storage strategies (e.g., httpOnly cookie or secure storage pattern depending on deployment).
 
-2. **Dashboard**
+2. **Dashboard** (Not yet implemented)
    - High-level overview of:
      - Recent imports, categorization status.
      - Key metrics (total spending, top categories).

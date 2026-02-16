@@ -24,7 +24,10 @@ Perform a complete dependency audit that:
 - Optional user instructions (e.g., focus on security, licensing, or specific ecosystems).
 
 If no dependency files are detected, explicitly request the file path or confirm whether to proceed with limited information.
-
+**Project Context (BudgetBridge):**
+- Frontend: React 19.2.0 + TypeScript 5.9.3, Vite 7.3.1, TanStack Router/Query, Tailwind CSS 4.1.7, pnpm package manager
+- Backend: .NET 9 (planned), PostgreSQL (planned)
+- Frontend dependencies in: `/frontend/package.json` and `/frontend/pnpm-lock.yaml`
 ---
 
 ### **Output Format**

@@ -13,11 +13,11 @@ As a developer joining the Budget Bridge project, I need to clone the repository
 
 **Why this priority**: This is the foundation for all backend development work. Without a working local development environment, no backend features can be developed or tested. This represents the absolute minimum viable deliverable.
 
-**Independent Test**: Can be fully tested by cloning the repository on a fresh machine with required prerequisites installed, running the documented startup command, and verifying that the backend service responds to health check requests. Delivers immediate value by enabling any developer to begin backend work.
+**Independent Test**: Can be fully tested by cloning the repository on a fresh machine with required prerequisites installed, running the documented startup script, and verifying that the backend service responds to health check requests. Delivers immediate value by enabling any developer to begin backend work.
 
 **Acceptance Scenarios**:
 
-1. **Given** a developer has the required prerequisites installed and has cloned the repository, **When** they run the documented backend startup command from the project root, **Then** the backend service starts successfully and responds to health check endpoints
+1. **Given** a developer has the required prerequisites installed and has cloned the repository, **When** they run the documented backend startup script from the project root, **Then** the backend service starts successfully and responds to health check endpoints
 2. **Given** the backend is running locally, **When** the developer makes a code change in the API layer, **Then** the changes are reflected without requiring manual restart (hot reload works)
 3. **Given** a fresh checkout of the code, **When** the developer inspects the solution structure, **Then** they can clearly identify Domain, Application, Infrastructure, and API layers with example files demonstrating the pattern
 
@@ -29,12 +29,12 @@ As a developer working on full-stack features, I need a single command that star
 
 **Why this priority**: This significantly improves developer experience and reduces onboarding friction. While the backend can function independently (P1), most development work requires both systems running. This is essential for productive full-stack development but not for initial backend-only work.
 
-**Independent Test**: Can be fully tested by running the unified startup command and verifying that both frontend and backend services are accessible and can communicate. Delivers value by reducing development workflow complexity and startup time.
+**Independent Test**: Can be fully tested by running the startup script and verifying that both frontend and backend services are accessible and can communicate. Delivers value by reducing development workflow complexity and startup time.
 
 **Acceptance Scenarios**:
 
-1. **Given** a developer has all required prerequisites installed, **When** they run the unified startup command from the project root, **Then** both frontend and backend services start successfully and are accessible at their designated ports
-2. **Given** both services are running via the unified command, **When** the developer stops the command, **Then** both services shut down gracefully
+1. **Given** a developer has all required prerequisites installed, **When** they run the startup script from the project root, **Then** both frontend and backend services start successfully and are accessible at their designated ports
+2. **Given** both services are running via the startup script, **When** the developer stops the script, **Then** both services shut down gracefully
 3. **Given** the frontend is configured to call backend endpoints, **When** both services are running, **Then** frontend can successfully communicate with backend without CORS or connection errors
 
 ---
@@ -57,7 +57,7 @@ As an open-source contributor, I need clear documentation about how to submit ch
 
 ### Edge Cases
 
-- What happens when a developer has an incompatible version of the backend runtime installed? Developer should be knowledgeable enough to recognize and fix this. It is not this project's goal to support this autoamtically. 
+- What happens when a developer has an incompatible version of the backend runtime installed? System MUST display error message showing current version, required version (.NET 9.0+), and link to installation guide (https://dotnet.microsoft.com/download). Developer is responsible for upgrading. 
 - How does the system handle port conflicts when default ports are already in use on the developer's machine? On docker container runtime, all communication should be interal to the docker environment. If there are port conflicts, the developer should be able to recognize and fix them. No automatic response is expected. However, the initial ports to be used should be random picked at creation and then fixed for everyone to use. 
 - What happens if database connection strings or configuration files are missing from the local environment? Dev should know how to fix it, but when running the docker-compose (or equivalent modern stack) stack it should not matter, and that should be the default behavior. 
 - How are secrets and sensitive configuration values handled in local development without committing them to the repository? Secrets should only exist on the backend, and it should use dotnet-secrets. The README.md should have initial configuration instructions instructing to setup the secrets. If possible, we can have a script that automates the creation of secrets and similar other settings with basic simple prompts (e.g. gen random password and init the db container with that password and store the dotnet-secret)
@@ -68,10 +68,10 @@ As an open-source contributor, I need clear documentation about how to submit ch
 ### Functional Requirements
 
 - **FR-001**: System MUST provide a backend solution structure with four distinct logical layers: Domain, Application, Infrastructure, and API
-- **FR-002**: System MUST include example placeholder files or classes in each layer demonstrating the separation of concerns and dependency flow (e.g., a sample entity, use case, repository interface, and API endpoint)
+- **FR-002**: System MUST include example placeholder files or classes in each layer demonstrating the separation of concerns and dependency flow. Minimum required: one sample entity in Domain (e.g., Budget.cs with factory method), one repository interface in Domain (e.g., IBudgetRepository.cs), one repository implementation in Infrastructure (e.g., BudgetRepository.cs), and one API controller in API layer (e.g., HealthController.cs). Each example MUST include XML documentation comments explaining its architectural role.
 - **FR-003**: System MUST provide a single command or script that starts the backend service in development mode with automatic code change detection
 - **FR-004**: System MUST include configuration for local development that works without requiring external dependencies or infrastructure
-- **FR-005**: System MUST provide a health check endpoint that returns service status and can be used to verify the backend is running
+- **FR-005**: System MUST provide two health check endpoints: (1) GET /health returning basic service status, and (2) GET /health/ready returning readiness status with database connectivity check
 - **FR-006**: System MUST provide a unified startup script that launches both frontend and backend services with a single command
 - **FR-007**: System MUST include documentation specifying required SDK versions and installation prerequisites
 - **FR-008**: System MUST provide clear error messages when prerequisites are missing or misconfigured
@@ -94,8 +94,8 @@ As an open-source contributor, I need clear documentation about how to submit ch
 
 ### Measurable Outcomes
 
-- **SC-001**: A developer with required prerequisites installed can clone the repository and have the backend running locally within 5 minutes using documented commands
-- **SC-002**: The unified startup command successfully launches both frontend and backend services without manual intervention or additional terminal windows
+- **SC-001**: A developer with required prerequisites installed can clone the repository and have the backend running locally within 5 minutes using documented commands (baseline: M1 Mac with 16GB RAM or equivalent x86-64 Linux machine with 16GB RAM)
+- **SC-002**: The startup script successfully launches both frontend and backend services without manual intervention or additional terminal windows
 - **SC-003**: The backend health check endpoint returns a successful response within 2 seconds of service startup
 - **SC-004**: Code changes to API endpoints are automatically reflected in the running service without requiring manual restart
 - **SC-005**: 100% of prerequisite installation issues provide actionable error messages indicating exactly what is missing and how to install it

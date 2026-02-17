@@ -54,28 +54,20 @@ This backend follows Clean Architecture with four distinct layers:
    cd budget-bridge/backend
    ```
 
-2. **Copy environment template**:
+2. **Run automated setup** (from repository root):
    ```bash
-   cp .env.example .env
-   # Edit .env and set DB_PASSWORD
+   cd ..
+   ./scripts/setup.sh
    ```
-
-3. **Initialize .NET User Secrets** (recommended for local development):
-   ```bash
-   cd src/BudgetBridge.Api
-   dotnet user-secrets init
-   dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=5432;Database=budgetbridge;Username=budgetbridge;Password=your_secure_password_here"
-   ```
-
-4. **Restore packages**:
-   ```bash
-   dotnet restore
-   ```
-
-5. **Build solution**:
-   ```bash
-   dotnet build
-   ```
+   
+   This will automatically:
+   - Load safe development passwords from committed `.env` files
+   - Initialize .NET user secrets with connection string
+   - Install frontend dependencies
+   - Build the solution
+   
+   **Note**: The `.env` files contain safe dummy passwords for local development.
+   To override any values, create `.env.local` (never committed).
 
 ### Running the Backend
 

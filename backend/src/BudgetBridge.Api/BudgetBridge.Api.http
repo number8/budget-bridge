@@ -1,6 +1,32 @@
 @BudgetBridge.Api_HostAddress = http://localhost:5257
 
-GET {{BudgetBridge.Api_HostAddress}}/weatherforecast/
+### Health Check
+GET {{BudgetBridge.Api_HostAddress}}/health
 Accept: application/json
+
+###
+
+### Get All Transactions (Placeholder - to be implemented)
+# GET {{BudgetBridge.Api_HostAddress}}/api/transactions
+# Accept: application/json
+
+###
+
+### Get Transaction by ID (Placeholder - to be implemented)
+# GET {{BudgetBridge.Api_HostAddress}}/api/transactions/1
+# Accept: application/json
+
+###
+
+### Create Transaction (Placeholder - to be implemented)
+# POST {{BudgetBridge.Api_HostAddress}}/api/transactions
+# Content-Type: application/json
+#
+# {
+#   "date": "2026-02-17",
+#   "amount": 50.00,
+#   "description": "Grocery shopping",
+#   "categoryId": 1
+# }
 
 ###

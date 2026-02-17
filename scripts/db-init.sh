@@ -23,7 +23,7 @@ if [ "$MODE" = "local" ]; then
         docker run -d \
             --name budgetbridge-db \
             -e POSTGRES_USER=budgetbridge \
-            -e POSTGRES_PASSWORD="${DB_PASSWORD:-dev_password}" \
+            -e POSTGRES_PASSWORD="${DB_PASSWORD:-budgetbridge_dev_password}" \
             -e POSTGRES_DB=budgetbridge \
             -p 5432:5432 \
             postgres:16-alpine
@@ -34,7 +34,7 @@ if [ "$MODE" = "local" ]; then
         echo "✅ PostgreSQL container already running"
     fi
     
-    CONNECTION_STRING="Host=localhost;Port=5432;Database=budgetbridge;Username=budgetbridge;Password=${DB_PASSWORD:-dev_password}"
+    CONNECTION_STRING="Host=localhost;Port=5432;Database=budgetbridge;Username=budgetbridge;Password=${DB_PASSWORD:-budgetbridge_dev_password}"
     
 elif [ "$MODE" = "docker" ]; then
     echo "Mode: Docker Compose"

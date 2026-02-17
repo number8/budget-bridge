@@ -147,7 +147,7 @@ This is a web application with separate backend and frontend:
 - [X] T071 [P] [US3] Configure backend-ci.yml to build Docker image and push to ghcr.io/mmorales/budget-bridge/backend
 - [X] T072 [P] [US3] Update frontend CI workflow at .github/workflows/frontend-ci.yml to push to ghcr.io/mmorales/budget-bridge/frontend
 - [X] T073 [US3] Add code style and linting checks section to CONTRIBUTING.md with dotnet format usage
-- [ ] T074 [US3] Test that pull request triggers CI workflow and provides feedback on build, format, and test results
+- [X] T074 [US3] Test that pull request triggers CI workflow and provides feedback on build, format, and test results
 
 **Checkpoint**: All user stories should now be independently functional - full development workflow with contribution guidelines
 
@@ -157,17 +157,17 @@ This is a web application with separate backend and frontend:
 
 **Purpose**: Improvements that affect multiple user stories and final validation
 
-- [ ] T075 [P] Create backend/src/BudgetBridge.Application/DTOs/CreateBudgetDto.cs and BudgetResponseDto.cs per data-model.md
-- [ ] T076 [P] Add XML documentation comments to all public APIs in backend/src/BudgetBridge.Api/Controllers/
-- [ ] T077 [P] Add XML documentation comments to all domain entities in backend/src/BudgetBridge.Domain/Entities/
-- [ ] T078 Update root README.md with quick start instructions referencing scripts/start.sh
-- [ ] T079 Update root README.md with architecture overview and links to backend/README.md and frontend/README.md
-- [ ] T080 [P] Add environment variable validation on backend startup with clear error messages for missing required values
-- [ ] T081 [P] Add structured logging configuration in backend/src/BudgetBridge.Api/appsettings.json
-- [ ] T082 Validate quickstart.md scenarios can be executed successfully (setup, start, health check, stop)
-- [ ] T083 Verify solution builds with zero warnings using TreatWarningsAsErrors=true
-- [ ] T084 Run dotnet format across entire solution to ensure consistent code style
-- [ ] T085 Verify backend can be stopped and restarted 10 consecutive times without errors or port conflicts
+- [X] T075 [P] Create backend/src/BudgetBridge.Application/DTOs/CreateBudgetDto.cs and BudgetResponseDto.cs per data-model.md
+- [X] T076 [P] Add XML documentation comments to all public APIs in backend/src/BudgetBridge.Api/Controllers/
+- [X] T077 [P] Add XML documentation comments to all domain entities in backend/src/BudgetBridge.Domain/Entities/
+- [X] T078 Update root README.md with quick start instructions referencing scripts/start.sh
+- [X] T079 Update root README.md with architecture overview and links to backend/README.md and frontend/README.md
+- [X] T080 [P] Add environment variable validation on backend startup with clear error messages for missing required values
+- [X] T081 [P] Add structured logging configuration in backend/src/BudgetBridge.Api/appsettings.json
+- [X] T082 Validate quickstart.md scenarios can be executed successfully (setup, start, health check, stop)
+- [X] T083 Verify solution builds with zero warnings using TreatWarningsAsErrors=true
+- [X] T084 Run dotnet format across entire solution to ensure consistent code style
+- [X] T085 Verify backend can be stopped and restarted 10 consecutive times without errors or port conflicts
 
 ---
 

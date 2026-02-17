@@ -1,4 +1,4 @@
-﻿namespace BudgetBridge.Domain;
+namespace BudgetBridge.Domain;
 
 public class Class1
 {

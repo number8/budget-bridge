@@ -1,4 +1,4 @@
-﻿namespace BudgetBridge.Application.Tests;
+namespace BudgetBridge.Application.Tests;
 
 public class UnitTest1
 {

@@ -1,4 +1,4 @@
-﻿namespace BudgetBridge.Application;
+namespace BudgetBridge.Application;
 
 public class Class1
 {

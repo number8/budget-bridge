@@ -18,7 +18,7 @@ BudgetBridge streamlines the process of importing financial data into your budge
 ### Quick Start
 
 ```bash
-# Initial setup (run once)
+# Initial setup (run once - fully automated)
 ./scripts/setup.sh
 
 # Start development environment

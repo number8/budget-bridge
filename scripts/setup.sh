@@ -59,23 +59,23 @@ if [ $PREREQ_FAILED -eq 1 ]; then
 fi
 
 echo ""
-echo "📝 Setting up environment files..."
+echo "📝 Checking environment files..."
 
-# Create .env file if it doesn't exist
-if [ ! -f "$PROJECT_ROOT/.env" ]; then
-    cp "$PROJECT_ROOT/.env.example" "$PROJECT_ROOT/.env"
-    echo "✅ Created .env from .env.example"
-    echo "   ⚠️  Please update DB_PASSWORD in .env before starting services"
+# Load environment variables from committed .env file
+if [ -f "$PROJECT_ROOT/.env" ]; then
+    # Source the .env file to get DB_PASSWORD
+    export $(grep -v '^#' "$PROJECT_ROOT/.env" | xargs)
+    echo "✅ Loaded environment variables from .env"
+    echo "   ℹ️  Using development password (safe for local dev only)"
 else
-    echo "ℹ️  .env already exists (skipping)"
+    echo "⚠️  .env file not found (should be committed in repo)"
+    export DB_PASSWORD="budgetbridge_dev_password"
 fi
 
-# Create backend .env if it doesn't exist (backward compatible: preserves existing)
-if [ ! -f "$PROJECT_ROOT/backend/.env" ]; then
-    cp "$PROJECT_ROOT/backend/.env.example" "$PROJECT_ROOT/backend/.env"
-    echo "✅ Created backend/.env from backend/.env.example"
-else
-    echo "ℹ️  backend/.env already exists (skipping)"
+# Check for local overrides
+if [ -f "$PROJECT_ROOT/.env.local" ]; then
+    export $(grep -v '^#' "$PROJECT_ROOT/.env.local" | xargs)
+    echo "ℹ️  Applied local overrides from .env.local"
 fi
 
 echo ""
@@ -94,11 +94,11 @@ fi
 
 # Set default connection string if not set (backward compatible: only sets if missing)
 if ! dotnet user-secrets list 2>&1 | grep -q "ConnectionStrings__DefaultConnection"; then
-    DB_PASSWORD="${DB_PASSWORD:-dev_password}"
+    DB_PASSWORD="${DB_PASSWORD:-budgetbridge_dev_password}"
     dotnet user-secrets set "ConnectionStrings__DefaultConnection" \
         "Host=localhost;Port=5432;Database=budgetbridge;Username=budgetbridge;Password=$DB_PASSWORD"
     echo "✅ Set default connection string in user secrets"
-    echo "   ℹ️  Using password: $DB_PASSWORD"
+    echo "   ℹ️  Using development password (safe for local development only)"
 else
     echo "ℹ️  Connection string already set in user secrets"
 fi

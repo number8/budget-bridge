@@ -1,0 +1,85 @@
+# Universal
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Secrets
+*.key
+*.pem
+*.pfx
+secrets/
+
+# Logs
+*.log
+logs/
+
+# .NET
+backend/bin/
+backend/obj/
+backend/**/bin/
+backend/**/obj/
+backend/*.user
+backend/*.suo
+backend/.vs/
+backend/BudgetBridge.sln.DotSettings.user
+
+# .NET Tools
+backend/.dotnet/
+backend/.tools/
+
+# Build outputs
+backend/publish/
+backend/artifacts/
+
+# Test results
+backend/TestResults/
+backend/coverage/
+backend/*.trx
+backend/*.coverage
+
+# NuGet
+backend/*.nupkg
+backend/*.snupkg
+backend/.nuget/
+
+# Rider
+backend/.idea/
+backend/*.sln.iml
+
+# User secrets (stored in user profile, not repo)
+# Note: user-secrets.json location varies by OS
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Node.js (for scripts)
+node_modules/
+package-lock.json
+yarn.lock
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
